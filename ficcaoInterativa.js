@@ -15,7 +15,13 @@ let tempo = {
     dia: 0,
     hora: 0,
     minuto: 0,
-    segundo: 0
+    segundo: 0,
+    dormir: function() {
+        if (tempo.hora > 20) {
+            tempo.dia++;
+            console.log(`${tempo.dia}`);
+        }
+    }
 }
 
 function passarTempo(day, hour, min, seg) {
@@ -120,7 +126,6 @@ function cidade(statusPersonagem) {
             console.log(`Sao ${tempo.hora} horas e ${tempo.minuto} minutos do dia ${tempo.dia}`);
         } else if (cidade == "armeiro" || cidade == "a") {
             console.clear();
-
             console.log("O armeiro lhe deu um arco de 20 de dano ");
             statusPersonagem.dano += 20;
             passarTempo(0, 3, 30, 0);

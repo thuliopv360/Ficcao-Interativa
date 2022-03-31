@@ -1,0 +1,43 @@
+""funcao saude, sede, fome
+
+A muito tempo um Dragao chamado Diaself vem atormentando o reino de Mountains of Paevas,
+e nesse reino tem uma familia peculiar que passa suas memorias e seu nome para a proxima geraçao assim que o atual heroi morre,
+certo dia o heroi atual foi morto pelo demonio e passou suas memorias para o seu filho, 
+pela manha ele acorda e decide se vai para a cidade ou se fica em casa 
+O nome do heroi(prompt)
+
+deseja Sair de casa? 
+se sim = 
+
+
+    o bravo heroi vai para a cidade e la ele encontra o Armeiro, o Ferreiro e o Treinador e ele decide 
+    Armeiro = 
+    Ganha um arco com 20 de dano 
+    Ferreiro = 
+    Ganha um espada com 25 de dano
+    Treinador =  
+    Treina uma arte marcial milenar com 15 de dano
+""
+    e ele ficou o resto da manha na cidade 
+
+    tarde
+    o bravo heroi sai em busca do demonio no caminho ele encontra a famosa dungeon Atrocaphia 
+    deseja entrar na dungeon?
+    se sim = 
+        dentro da dungeon ele encontra uma encruzilhada 
+        se esquerda = mapa
+        se centro = arma
+        se direita = 
+    se nao =
+
+se nao = 
+deseja sair de casa a tarde?
+se sim = 
+se nao = 
+deseja sair ou voltar a dormir noite
+se sim = 
+se nao = 
+volta no inicio 
+
+
+

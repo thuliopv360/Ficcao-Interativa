@@ -15,13 +15,7 @@ let tempo = {
     dia: 0,
     hora: 0,
     minuto: 0,
-    segundo: 0,
-    dormir: function() {
-        if (tempo.hora > 20) {
-            tempo.dia++;
-            console.log(`${tempo.dia}`);
-        }
-    }
+    segundo: 0
 }
 
 function passarTempo(day, hour, min, seg) {
@@ -29,10 +23,6 @@ function passarTempo(day, hour, min, seg) {
     tempo.hora += hour
     tempo.minuto += min
     tempo.segundo += seg
-        // if (tempo.hora > 20) {
-        //     tempo.dia++;
-        //     console.log(`${tempo.dia}`);
-        // }
     while (tempo.hora > 24) {
         tempo.dia++;
         tempo.hora -= 24;
@@ -85,13 +75,17 @@ let dragao = {
 }
 
 function batalha(inimigo, personagem) {
+    console.log("Comecou a batalha");
+    console.log(inimigo.saude);
     while (inimigo.saude > 0) {
         personagem.saude -= inimigo.dano;
         inimigo.saude -= personagem.dano;
-        if (inimigo.saude = 0) {
+        if (inimigo.saude < 1) {
             break;
         }
     }
+    console.log(inimigo.saude);
+    console.log(personagem.saude);
     return personagem.saude
 }
 passarTempo(0, 7, 0, 0);
@@ -126,6 +120,7 @@ function cidade(statusPersonagem) {
             console.log(`Sao ${tempo.hora} horas e ${tempo.minuto} minutos do dia ${tempo.dia}`);
         } else if (cidade == "armeiro" || cidade == "a") {
             console.clear();
+
             console.log("O armeiro lhe deu um arco de 20 de dano ");
             statusPersonagem.dano += 20;
             passarTempo(0, 3, 30, 0);
@@ -206,23 +201,37 @@ function tarde(statusPersonagem) {
     } else if (pergunta == "nao" || pergunta == "n") {
         console.log("O heroi retornou para casa");
     }
-    descansar();
     return statusPersonagem
 }
 
 function taverna() {
     console.log(`Sao ${tempo.hora} horas e ${tempo.minuto} minutos do dia ${tempo.dia}`);
-    canecos = 0;
-    if (pergunta == "sim") {
-        console.log("Deseja beber um caneco")
-
+    let canecos = 0;
+    let pergunta = prompt("Deseja beber um caneco de cerveja? ").toLowerCase();
+    if (pergunta == "sim" || pergunta == "s" || pergunta == "claro") {
+        canecos++;
+        for (let i = 0; i > 30; i++) {
+            pergunta = prompt("Deseja beber mais um caneco de cerveja? ");
+            if (i == 20) {
+                console.clear();
+                console.log(canecos);
+                console.log("Voce bebeu demais e saiu com uma mulher");
+                console.log("E dormiu demais. ");
+                passarTempo(0, 10, 0, 0);
+                break;
+            }
+        }
     }
 }
+
 
 function noite(statusPersonagem) {
     console.clear();
     console.log(`O bravo heroi saiu da dungeon com vida`);
+    console.log(`Sao ${tempo.hora} horas e ${tempo.minuto} minutos do dia ${tempo.dia}`);
     let pergunta = prompt("Deseja voltar para casa? ").toLowerCase();
+    let resposta
+    let perguntaDragao;
     if (pergunta == "sim" || pergunta == "s" || pergunta == "claro") {
         console.log(`Sao ${tempo.hora} horas e ${tempo.minuto} minutos do dia ${tempo.dia}`);
         console.log("O heroi voltou para casa");
@@ -230,27 +239,34 @@ function noite(statusPersonagem) {
         console.log("O heroi decide nao voltar para casa");
         console.log("Deseja ir para taverna?");
         console.log("Ou deseja andar aleatorio pelo mapa");
-        pergunta = prompt("Oque voce deseja fazer? ").toLowerCase();
-        if (pergunta == "taverna" || pergunta == "beber") {
+        let aleatorio = 9 //Math.floor(Math.random() * 10)
+        resposta = prompt("Oque voce deseja fazer? ").toLowerCase();
+        if (resposta == "taverna" || resposta == "beber") {
             console.log("O heroi entra na taverna e pega um copo para beber");
-            for (let bebado = 0; bebado > 20; bebado++) {}
-        } else if (pergunta == "aleatorio" || pergunta == "andar") {
-
+            taverna();
+        } else if (resposta == "aleatorio" || resposta == "andar") {
+            if (aleatorio == 9) {
+                console.log(`Voce estava andando pela vila e o dragao Diaself apareceu`);
+                perguntaDragao = prompt(`Deseja lutar com o dragao? `).toLowerCase();
+                if (perguntaDragao == "sim" || pergunta == "s" || pergunta == "claro") {
+                    batalha(dragao, statusPersonagem);
+                }
+            }
+        } else {
+            console.log(`ola mundo`);
         }
     }
     descansar();
 }
 
+// batalha(minotauro, statusPersonagem);
 
 while (true) {
-    let sair = cidade(statusPersonagem, tempo);
-    console.log(sair);
-    let dungeon = tarde(statusPersonagem);
-    console.log(dungeon);
-    // let saida = noite(statusPersonagem);
-    // console.log(saida);
-
+    cidade(statusPersonagem);
+    tarde(statusPersonagem);
+    noite(statusPersonagem);
 }
+// }
 // // // let dano = cidade(statusPersonagem);
 // // // console.log(dano);
 
